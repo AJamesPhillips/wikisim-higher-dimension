@@ -33,15 +33,14 @@ export const Interactable = () =>
         renderer.setPixelRatio(window.devicePixelRatio)
 
         // Handle resize
-        const handle_resize = () => {
+        const handle_resize = () =>
+        {
             const width = canvas.clientWidth
             const height = canvas.clientHeight
-            renderer.setSize(width, height)
+            renderer.setSize(width, height, false) // false disables setting the canvas style size
         }
         window.addEventListener("resize", handle_resize)
         handle_resize() // Initial size
-
-        renderer.setScissorTest(true)
 
         const scene = new THREE.Scene()
         scene.background = new THREE.Color(0xf0f0f0)
