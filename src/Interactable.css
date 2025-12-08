@@ -1,6 +1,7 @@
 .sim-container {
     position: relative;
-    width: 100%;
+    width: fit-content;
+    margin: auto;
     background: #f0f0f0;
     border: 1px solid #ccc;
     overflow: hidden;

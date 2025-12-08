@@ -181,8 +181,10 @@ export const Interactable = () =>
     const is_conflicted = slider_value < 100
     const class_conflicted = is_conflicted ? " conflicted" : ""
 
-    return (
+    return <>
+        <h1>What is Both a Rectangle And a Circle?</h1>
         <div className="sim-container">
+
             <canvas ref={canvas_ref} className="sim-canvas" />
 
             <div className="ui-overlay">
@@ -211,5 +213,12 @@ export const Interactable = () =>
                 </button>
             </div>
         </div>
-    )
+        <p>
+            It's not possible in just two dimensions. But if you think in higher dimensions,
+            both ideas can be true at once. For example, in 3D, a cylinder looks like a
+            rectangle from one angle and a circle from another. Where else in life can
+            two viewpoints seem to clash, yet both make sense depending on how you look
+            at them? And can you “step up” to a higher level of thinking to connect them?
+        </p>
+    </>
 }
