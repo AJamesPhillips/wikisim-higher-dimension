@@ -1,10 +1,12 @@
 
-# WikiSim template simulation - typescript, preact & three.js
+# WikiSim interactable - Higher Dimension
+
+You can play it here: https://wikisim.org/wiki/1122
 
 ## Getting Started
 
-    git clone git@github.com:wikisim/template-sim-typescript-preact-three.git your-new-sim-name --recursive
-    cd your-new-sim-name
+    git clone https://github.com/AJamesPhillips/wikisim-higher-dimension
+    cd wikisim-higher-dimension
     pnpm install
     pnpm run dev
 
