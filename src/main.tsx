@@ -3,13 +3,13 @@ import "./index.css"
 
 import "./monkey_patch"
 
-import { DemoSim } from "./DemoSim.tsx"
+import { Interactable } from "./Interactable.tsx"
 
 
 function App ()
 {
     return <div>
-        <DemoSim />
+        <Interactable />
         <div id="debug_output"></div>
     </div>
 }
