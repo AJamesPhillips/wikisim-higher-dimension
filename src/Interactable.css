@@ -104,3 +104,10 @@ input[type=range].slider::-webkit-slider-thumb {
 .toggle-unify-button.conflicted:hover {
     background-color: #da190b;
 }
+
+
+@media (max-width: 600px) {
+    .sim-canvas {
+        height: 400px;
+    }
+}
