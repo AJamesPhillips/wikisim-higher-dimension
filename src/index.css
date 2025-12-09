@@ -109,3 +109,13 @@ option {
     background-color: #ffffff;
     color: #495057;
 }
+
+@media (max-width: 600px) {
+    #app {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
