@@ -84,6 +84,37 @@ export const Interactable = () =>
             100
         )
 
+        // Interaction state
+        let is_dragging = false
+        let previous_y = 0
+
+        const onPointerDown = (e: PointerEvent) => {
+            is_dragging = true
+            previous_y = e.clientY
+            canvas.setPointerCapture(e.pointerId)
+        }
+
+        const onPointerMove = (e: PointerEvent) => {
+            if (!is_dragging) return
+            const delta_y = e.clientY - previous_y
+            previous_y = e.clientY
+
+            const sensitivity = 0.5
+            const current_val = slider_value_ref.current
+            const new_val = Math.max(0, Math.min(100, current_val - delta_y * sensitivity))
+            set_slider_value(new_val)
+        }
+
+        const onPointerUp = (e: PointerEvent) => {
+            is_dragging = false
+            canvas.releasePointerCapture(e.pointerId)
+        }
+
+        canvas.addEventListener("pointerdown", onPointerDown)
+        canvas.addEventListener("pointermove", onPointerMove)
+        canvas.addEventListener("pointerup", onPointerUp)
+        canvas.addEventListener("pointercancel", onPointerUp)
+
         const animate = () => {
             request_ref.current = requestAnimationFrame(animate)
 
@@ -148,6 +179,12 @@ export const Interactable = () =>
         return () => {
             if (request_ref.current) cancelAnimationFrame(request_ref.current)
             window.removeEventListener("resize", handle_resize)
+
+            canvas.removeEventListener("pointerdown", onPointerDown)
+            canvas.removeEventListener("pointermove", onPointerMove)
+            canvas.removeEventListener("pointerup", onPointerUp)
+            canvas.removeEventListener("pointercancel", onPointerUp)
+
             renderer.dispose()
         }
     }, [])
@@ -217,8 +254,10 @@ export const Interactable = () =>
             </div>
         </div>
         <p>
-            It's not possible in just two dimensions. But if you think in higher dimensions,
-            both ideas can be true at once. For example, in 3D, a cylinder looks like a
+            It's not possible to answer this question in just two dimensions and many
+            other questions at lower dimensions. But if you
+            think in higher dimensions then often conflicting ideas can become true at once.
+            In this example, a 3D cylinder in 2D looked like a
             rectangle from one angle and a circle from another. Where else in life can
             two viewpoints seem to clash, yet both make sense depending on how you look
             at them? And can you “step up” to a higher level of thinking to connect them?
