@@ -57,6 +57,21 @@
     max-width: 100%;
 }
 
+input[type=range].slider::-webkit-slider-thumb {
+    width: 30px;
+    height: 30px;
+    background-color: darkgrey;
+}
+
+
+/* Not using, very buggy on Firefox MacOS
+.slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    background-color: darkgrey;
+    border-radius: 50%;
+} */
+
 .slider-labels {
     display: flex;
     justify-content: space-between;
