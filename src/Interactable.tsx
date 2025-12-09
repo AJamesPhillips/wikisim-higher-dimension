@@ -106,16 +106,20 @@ export const Interactable = () =>
             const width = canvas.clientWidth
             const height = canvas.clientHeight
 
+            // Adjust frustum size for narrow screens (zoom out by 30% if < 600px)
+            const is_narrow = width < 600
+            const current_frustum_size = is_narrow ? frustum_size * 1.3 : frustum_size
+
             // Update frustums in case of resize
             const current_aspect = (width / 2) / height
 
             const cameras = [camera1, camera2]
             for (const cam of cameras)
             {
-                cam.left = -frustum_size * current_aspect / 2
-                cam.right = frustum_size * current_aspect / 2
-                cam.top = frustum_size / 2
-                cam.bottom = -frustum_size / 2
+                cam.left = -current_frustum_size * current_aspect / 2
+                cam.right = current_frustum_size * current_aspect / 2
+                cam.top = current_frustum_size / 2
+                cam.bottom = -current_frustum_size / 2
                 cam.updateProjectionMatrix()
             }
 
