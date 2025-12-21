@@ -1,3 +1,6 @@
+// A significant amount of this file was created by LLMs.
+// Only 3 of the prompts and none of the models used were kept by VisualStudio
+// code.  These 3 (minor) prompts have been added to this commit message.
 import { useEffect, useRef, useState } from "preact/hooks"
 import * as THREE from "three"
 
