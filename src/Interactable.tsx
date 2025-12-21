@@ -20,7 +20,7 @@ export const Interactable = () =>
     const cam1_start = new THREE.Vector3(0, 0, 5)
 
     // Camera 2 Start (Top view -> Circle)
-    const cam2_start = new THREE.Vector3(0, 5, 0.1) // Slight offset to avoid lookAt issues if exactly up
+    const cam2_start = new THREE.Vector3(0, 5, 0)
 
     // We need a way to update the render loop with the new slider value without recreating the scene.
     const slider_value_ref = useRef(slider_value)
@@ -56,16 +56,7 @@ export const Interactable = () =>
         dir_light.position.set(25, 10, 7)
         scene.add(dir_light)
 
-        // Cylinder
-        const geometry = new THREE.CylinderGeometry(0.8, 0.8, 2, 64)
-        const material = new THREE.MeshStandardMaterial({
-            color: 0x6582f9,
-            emissive: 0x072534,
-            side: THREE.DoubleSide,
-            flatShading: false
-        })
-        const cylinder = new THREE.Mesh(geometry, material)
-        scene.add(cylinder)
+        scene.add(make_cylinder())
 
         // Cameras
         const frustum_size = 4
@@ -266,4 +257,29 @@ export const Interactable = () =>
             at them? And can you “step up” to a higher level of thinking to connect them?
         </p>
     </>
+}
+
+
+function make_cylinder(): THREE.Mesh
+{
+    const geometry = new THREE.CylinderGeometry(0.8, 0.8, 2, 64)
+
+    const side_material = new THREE.MeshStandardMaterial({
+        color: 0x6582f9,
+        emissive: 0x072534,
+        side: THREE.DoubleSide,
+        flatShading: false
+    })
+
+    const cap_material = new THREE.MeshStandardMaterial({
+        color: 0xffaa00,
+        emissive: 0xa09800,
+        side: THREE.DoubleSide,
+        flatShading: false
+    })
+
+    // Provide materials in order: side, top, bottom.
+    const cylinder = new THREE.Mesh(geometry, [side_material, cap_material, cap_material])
+
+    return cylinder
 }
