@@ -10,6 +10,12 @@ You can play it here: https://wikisim.org/wiki/1122
     pnpm install
     pnpm run dev
 
+## Build and deploy
+
+    pnpm run build
+
+Then https://wikisim.org/edit/1122 and upload the contents of the `dist` folder.
+
 # Licenses
 
 The software code in this repository is licensed under the [BSD 3-Clause license](LICENSE-BSD-3-CLAUSE.md).
