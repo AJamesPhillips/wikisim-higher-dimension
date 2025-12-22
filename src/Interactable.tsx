@@ -272,8 +272,11 @@ function make_cylinder(): THREE.Mesh
     })
 
     const cap_material = new THREE.MeshStandardMaterial({
-        color: 0xffaa00,
-        emissive: 0xa09800,
+        color: 0x6582f9,
+        emissive: 0x072534,
+        // This is a yellow colour but have decided to keep it all blue.
+        // color: 0xffaa00,
+        // emissive: 0xa09800,
         side: THREE.DoubleSide,
         flatShading: false
     })
