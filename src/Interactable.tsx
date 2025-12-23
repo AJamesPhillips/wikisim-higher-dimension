@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from "preact/hooks"
 import * as THREE from "three"
 
+import { lerp } from "three/src/math/MathUtils.js"
 import "./Interactable.css"
 
 
@@ -59,7 +60,7 @@ export const Interactable = () =>
         scene.add(make_cylinder())
 
         // Cameras
-        const frustum_size = 4
+        const frustum_size = 3.5
         const aspect = (canvas.clientWidth / 2) / canvas.clientHeight
         const camera1 = new THREE.OrthographicCamera(
             frustum_size * aspect / -2,
@@ -131,9 +132,10 @@ export const Interactable = () =>
             const width = canvas.clientWidth
             const height = canvas.clientHeight
 
-            // Adjust frustum size for narrow screens (zoom out by 30% if < 600px)
-            const is_narrow = width < 600
-            const current_frustum_size = is_narrow ? frustum_size * 1.3 : frustum_size
+            // Adjust frustum size for narrow screens (zoom out by 30% if < --narrow-width)
+            const screen_t = Math.min(1, width / 800) // 800px is the narrow threshold
+            const frustum_multipler = lerp(1.3, 1, screen_t)
+            const current_frustum_size = frustum_size * frustum_multipler
 
             // Update frustums in case of resize
             const current_aspect = (width / 2) / height

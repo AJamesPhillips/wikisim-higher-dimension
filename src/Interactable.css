@@ -1,6 +1,6 @@
 .sim-container {
     position: relative;
-    width: fit-content;
+    width: 100%;
     margin: auto;
     background: #f0f0f0;
     border: 1px solid #ccc;
@@ -29,7 +29,7 @@
 .labels {
     display: flex;
     width: 100%;
-    padding: 20px;
+    padding: 20px 0px;
     box-sizing: border-box;
 }
 
@@ -51,6 +51,15 @@
     align-items: center;
     gap: 10px;
     border-top: 1px solid #ccc;
+
+    /*
+     * The relative position and z-index allows the .controls
+     * element to overlap with and hide the canvas (this is a
+     * hack on smaller mobile screens to minimize the canvas
+     * size.)
+     */
+    position: relative;
+    z-index: 1;
 }
 
 .slider {
@@ -106,8 +115,10 @@ input[type=range].slider::-webkit-slider-thumb {
 }
 
 
-@media (max-width: 600px) {
+/* sync 800px with other instances of --narrow-width */
+@media (max-width: 800px) {
     .sim-canvas {
-        height: 400px;
+        height: 300px;
+        margin-bottom: -50px;
     }
 }

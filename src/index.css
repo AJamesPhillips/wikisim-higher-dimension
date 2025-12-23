@@ -110,7 +110,8 @@ option {
     color: #495057;
 }
 
-@media (max-width: 600px) {
+/* sync 800px with other instances of --narrow-width */
+@media (max-width: 800px) {
     #app {
         padding: 1rem;
     }
